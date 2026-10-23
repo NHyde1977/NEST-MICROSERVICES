@@ -1,0 +1,19 @@
+ .env.example                                       |   6 [32m+[m[31m-[m
+ apps/notifications/src/main.ts                     |  35 [32m++++++[m
+ .../src/notifications.controller.spec.ts           |  22 [32m++++[m
+ apps/notifications/src/notifications.controller.ts |  45 [32m++++++++[m
+ apps/notifications/src/notifications.module.ts     |  11 [32m++[m
+ apps/notifications/src/notifications.service.ts    |  29 [32m+++++[m
+ apps/notifications/test/app.e2e-spec.ts            |  29 [32m+++++[m
+ apps/notifications/test/jest-e2e.json              |   9 [32m++[m
+ apps/notifications/tsconfig.app.json               |  10 [32m++[m
+ apps/orders/src/orders.module.ts                   |  16 [32m+++[m
+ apps/orders/src/orders.service.ts                  |  32 [32m++++[m[31m--[m
+ apps/users/src/main.ts                             |   2 [32m+[m[31m-[m
+ docker-compose.yml                                 |  16 [32m+++[m
+ nest-cli.json                                      |   9 [32m++[m
+ package-lock.json                                  |  57 [32m+++++++++[m[31m-[m
+ package.json                                       |   4 [32m+[m[31m-[m
+ scripts/setup-rabbitmq.ps1                         | 120 [32m+++++++++++++++++++++[m
+ tsconfig.json                                      |   3 [32m+[m
+ 18 files changed, 439 insertions(+), 16 deletions(-)

@@ -12,8 +12,11 @@ export class OrdersService {
     private readonly prisma: PrismaService,
 
     @Inject('USERS_SERVICE')
-    private readonly usersClient: ClientProxy,
-  ) {}
+  private readonly usersClient: ClientProxy,
+
+  @Inject('NOTIFICATIONS_CLIENT')
+  private readonly notificationsClient: ClientProxy,
+) {}
 
   async create(data: CreateOrderDto) {
     let user: unknown;
@@ -65,13 +68,24 @@ if (
       });
     }
 
-    return this.prisma.order.create({
-      data: {
-        userId: data.userId,
-        description: data.description,
-        total: data.total,
-      },
-    });
+const order = await this.prisma.order.create({
+  data: {
+    userId: data.userId,
+    description: data.description,
+    total: data.total,
+  },
+});
+
+await firstValueFrom(
+  this.notificationsClient.emit('order.created', {
+    orderId: order.id,
+    userId: order.userId,
+    total: order.total.toString(),
+  }),
+);
+
+return order;
+
   }
 
   findAll() {
